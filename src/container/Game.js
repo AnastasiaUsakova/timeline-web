@@ -2,13 +2,19 @@ import React, {Component} from "react";
 import Table from "../component/Table";
 import Deck from "../component/Deck";
 import Hand from "../component/Hand";
+import Login from "../component/Login";
 
 class Game extends Component{
 
     state = {
+        user: {
+            login: undefined,
+            password: undefined
+        },
         hand: [],
         selectedInHand: -1,
-        table: []
+        table: [],
+        isAuthorized: false
     };
 
     componentDidMount() {// useSmth react hooks
@@ -55,17 +61,47 @@ class Game extends Component{
         }
     }
 
+    onChangeLogin = (event) => {
+        console.log("login");
+        let user = this.state.user;
+        user.login = event.target.value;
+        this.setState({user: user, isAuthorized: false})
+    };
+
+    onChangePswd = (event) => {
+        console.log("pswd");
+        let user = this.state.user;
+        user.password = event.target.value;
+        this.setState({user: user, isAuthorized: false})
+    };
+
+    onClickLogin = () => {
+        console.log("click");
+        const isAuthorized = this.state.user.login && this.state.user.password;
+        this.setState({isAuthorized: isAuthorized});
+    }
+
     render() {
+
         return (
-            <div className="game-table">
-                <div className="toolbar">toolbar</div>
-                <Table cards={this.state.table} editMode={this.state.selectedInHand > -1} onClick={this.onClickAddCard}/>
-                <div className="player-hud">
-                    <Deck onClick={this.onClickDeck}/>
-                    <Hand cards={this.state.hand} onClick={this.selectInHand} selectedIndex={this.state.selectedInHand}/>
-                    <Deck/>
-                </div>
-            </div>
+            <>
+                {
+                    this.state.isAuthorized && (
+                        <div className="game-table">
+                            <div className="toolbar">toolbar</div>
+                            <Table cards={this.state.table} editMode={this.state.selectedInHand > -1} onClick={this.onClickAddCard}/>
+                            <div className="player-hud">
+                                <Deck onClick={this.onClickDeck}/>
+                                <Hand cards={this.state.hand} onClick={this.selectInHand} selectedIndex={this.state.selectedInHand}/>
+                                <Deck/>
+                            </div>
+                        </div>
+                    )
+                }
+                {!this.state.isAuthorized && (
+                    <Login onChangeLogin={this.onChangeLogin} onChangePswd={this.onChangePswd} onClickLogin={this.onClickLogin}/>
+                )}
+            </>
         );
     }
 }

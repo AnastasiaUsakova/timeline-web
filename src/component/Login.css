@@ -1,0 +1,41 @@
+.login {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    position: relative;
+    padding: 0 2rem
+}
+
+.login {
+    text-align: left!important;
+}
+
+.i-input {
+    background: #2c303a!important;
+    color: white!important;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #2c303a;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+.i-input-label {
+    font-weight: 500;
+    color: white;
+}
+
+.i-input:focus {
+    outline: none;
+    border-color: #b7bbc8;
+}
+
+.i-input::placeholder {
+    color: #b7bbc8!important;
+}
+
+.i-input:hover {
+    border-color: #b7bbc8;
+}
