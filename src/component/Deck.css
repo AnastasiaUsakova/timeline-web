@@ -1,0 +1,16 @@
+.deck-element {
+    margin: auto 10px;
+    object-fit: cover;
+}
+
+.deck-element img {
+    width: 100%;
+    padding: 1px;
+    border-radius: 12px;
+    transform: rotate(90deg);
+    cursor: pointer;
+}
+
+.deck-element img:hover {
+    background: #FFA022;
+}

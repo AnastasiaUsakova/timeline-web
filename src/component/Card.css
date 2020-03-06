@@ -1,0 +1,33 @@
+.card-container {
+    display: flex;
+}
+
+.card {
+    display: grid;
+    grid-template-rows: 4fr 1fr;
+}
+
+.card {
+    margin: auto 15px;
+    background: #1e1f27;
+    width: 220px;
+    height: 300px;
+    border-radius: 10px;
+}
+
+.card .description {
+    padding: 10px;
+}
+.card .year {
+    padding: 10px;
+}
+
+.card:hover {
+    border-style: solid;
+    border-color: #FFA022;
+}
+
+.card.selected {
+    border-style: solid;
+    border-color: #c07b1c;
+}

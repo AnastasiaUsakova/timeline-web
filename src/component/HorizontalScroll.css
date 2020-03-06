@@ -1,0 +1,12 @@
+div.horizontal-scroll {
+    height: 330px;
+    width: 100vh;
+    margin: 20px;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+
+div.horizontal-scroll > div {
+    display: inline-block;
+}
