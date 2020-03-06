@@ -40,20 +40,14 @@ class Game extends Component{
         let handCards = this.state.hand;
         let selectedHandIndex = this.state.selectedInHand;
         let handCard = handCards[selectedHandIndex];
-        // if (index === 0) {
-        //     tableCards.unshift(handCard);
-        // } else if (index === tableCards.length) {
-        //     tableCards.push(handCard);
-        // } else {
-            tableCards.splice(index, 0, handCard);
-        //}
+        tableCards.splice(index, 0, handCard);
         handCards.splice(selectedHandIndex, 1);
         this.setState({table: tableCards, selectedInHand: -1, hand: handCards})
     };
 
-    onClickDeck() {
+    onClickDeck = () => {
         let cards = this.state.hand;
-        if (cards.length > 5) {
+        if (cards.length >= 5) {
             console.log("max = 5");
         } else {
             cards.push({id: 23, year: 2021, description: "Clone"});
