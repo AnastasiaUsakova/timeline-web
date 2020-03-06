@@ -88,7 +88,7 @@ class Game extends Component{
                 {
                     this.state.isAuthorized && (
                         <div className="game-table">
-                            <div className="toolbar">toolbar</div>
+                            <div className="toolbar">{`Player: ${this.state.user.login}`}</div>
                             <Table cards={this.state.table} editMode={this.state.selectedInHand > -1} onClick={this.onClickAddCard}/>
                             <div className="player-hud">
                                 <Deck onClick={this.onClickDeck}/>
