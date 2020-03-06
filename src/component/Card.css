@@ -10,8 +10,8 @@
 .card {
     margin: auto 15px;
     background: #1e1f27;
-    width: 220px;
-    height: 300px;
+    width: 200px;
+    height: 280px;
     border-radius: 10px;
 }
 
@@ -30,4 +30,18 @@
 .card.selected {
     border-style: solid;
     border-color: #c07b1c;
+}
+
+.left,.right {
+    margin: auto 0;
+}
+
+.right {
+    position: relative;
+    right: 0px;
+}
+
+.left {
+    position: relative;
+    left: 0px;
 }

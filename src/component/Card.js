@@ -9,7 +9,7 @@ const Card = (props) => {
     }
     return (
         <div className="card-container">
-            {props.addBefore && <Plus onClick={props.onBeforeClick}/>}
+            {props.addBefore && <div className="left"><Plus onClick={props.onBeforeClick}/></div>}
             <div className={cardClass} onClick={props.onClick}>
                 <div className="description">
                     {props.description ? props.description: 'description'}
@@ -18,7 +18,7 @@ const Card = (props) => {
                     {props.year ? props.year: ''}
                 </div>
             </div>
-            {props.addAfter && <Plus onClick={props.onAfterClick}/>}
+            {props.addAfter && <div className="right"><Plus onClick={props.onAfterClick}/></div>}
         </div>
     );
 };
