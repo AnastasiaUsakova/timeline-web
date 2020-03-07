@@ -9,7 +9,8 @@
 }
 
 .table,.hand {
-  margin: 0 20px;
+  color: #fff;
+  padding: 0 30px;
   overflow: auto;
   white-space: nowrap;
   display: grid;
@@ -18,10 +19,6 @@
   grid-column-gap: 25px;
   grid-auto-columns: 220px;
   height: 350px;
-}
-
-.table {
-    padding: 0 20px;
 }
 
 .player-hud {
