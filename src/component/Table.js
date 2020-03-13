@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 
 const Table = (props) => {
-    let cards = props.cards || [];
+    const cards = props.cards || [];
     return (
         <>
             <div className="table">

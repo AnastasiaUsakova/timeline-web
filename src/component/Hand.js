@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 
 const Hand = (props) => {
-    let cards = props.cards || [];
+    const cards = props.cards || [];
     return (
         <div className="hand">
             {cards.map((c, i) => <Card key={i}

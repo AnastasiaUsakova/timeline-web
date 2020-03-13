@@ -35,7 +35,7 @@ class Game extends Component{
 
     selectInHand(index) {
         console.log("Index " + index);
-        let newIndex = this.state.selectedInHand === index ? -1 : index;
+        const newIndex = this.state.selectedInHand === index ? -1 : index;
         this.setState({selectedInHand: newIndex});
     };
 
@@ -44,8 +44,8 @@ class Game extends Component{
         console.log("Push " + index);
         let tableCards = this.state.table;
         let handCards = this.state.hand;
-        let selectedHandIndex = this.state.selectedInHand;
-        let handCard = handCards[selectedHandIndex];
+        const selectedHandIndex = this.state.selectedInHand;
+        const handCard = handCards[selectedHandIndex];
         tableCards.splice(index, 0, handCard);
         handCards.splice(selectedHandIndex, 1);
         this.setState({table: tableCards, selectedInHand: -1, hand: handCards})
