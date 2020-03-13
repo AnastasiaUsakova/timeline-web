@@ -33,14 +33,14 @@ class Game extends Component{
         this.setState({hand: cards, table: [cards[0]]});
     };
 
-    selectInHand = (index) => {
+    selectInHand(index) {
         console.log("Index " + index);
         let newIndex = this.state.selectedInHand === index ? -1 : index;
         this.setState({selectedInHand: newIndex});
     };
 
     /*добавляем левее индекса*/
-    onClickAddCard = (index) => {
+    onClickAddCard(index) {
         console.log("Push " + index);
         let tableCards = this.state.table;
         let handCards = this.state.hand;
@@ -51,7 +51,7 @@ class Game extends Component{
         this.setState({table: tableCards, selectedInHand: -1, hand: handCards})
     };
 
-    onClickDeck = () => {
+    onClickDeck() {
         let cards = this.state.hand;
         if (cards.length >= 5) {
             console.log("max = 5");
@@ -61,21 +61,21 @@ class Game extends Component{
         }
     }
 
-    onChangeLogin = (event) => {
+    onChangeLogin(event) {
         console.log("login");
         let user = this.state.user;
         user.login = event.target.value;
         this.setState({user: user, isAuthorized: false})
     };
 
-    onChangePswd = (event) => {
+    onChangePswd(event) {
         console.log("pswd");
         let user = this.state.user;
         user.password = event.target.value;
         this.setState({user: user, isAuthorized: false})
     };
 
-    onClickLogin = () => {
+    onLogin() {
         console.log("click");
         const isAuthorized = this.state.user.login && this.state.user.password;
         this.setState({isAuthorized: isAuthorized});
@@ -86,21 +86,31 @@ class Game extends Component{
         return (
             <>
                 {
-                    this.state.isAuthorized && (
+                    this.state.isAuthorized
+                    ? (
                         <div className="game-table">
                             <div className="toolbar">{`Player: ${this.state.user.login}`}</div>
-                            <Table cards={this.state.table} editMode={this.state.selectedInHand > -1} onClick={this.onClickAddCard}/>
+                            <Table cards={this.state.table}
+                                   editMode={this.state.selectedInHand > -1}
+                                   onClick={this.onClickAddCard.bind(this)}
+                            />
                             <div className="player-hud">
-                                <Deck onClick={this.onClickDeck}/>
-                                <Hand cards={this.state.hand} onClick={this.selectInHand} selectedIndex={this.state.selectedInHand}/>
+                                <Deck onClick={this.onClickDeck.bind(this)}/>
+                                <Hand cards={this.state.hand}
+                                      onClick={this.selectInHand.bind(this)}
+                                      selectedIndex={this.state.selectedInHand}
+                                />
                                 <Deck/>
                             </div>
                         </div>
                     )
+                    : (
+                        <Login onChangeLogin={this.onChangeLogin.bind(this)}
+                               onChangePswd={this.onChangePswd.bind(this)}
+                               onLogin={this.onLogin.bind(this)}
+                        />
+                    )
                 }
-                {!this.state.isAuthorized && (
-                    <Login onChangeLogin={this.onChangeLogin} onChangePswd={this.onChangePswd} onClickLogin={this.onClickLogin}/>
-                )}
             </>
         );
     }

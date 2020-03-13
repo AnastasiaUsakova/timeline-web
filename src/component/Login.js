@@ -3,7 +3,7 @@ import './Login.css'
 
 const Login = (props) => {
     return (
-        <div className="login">
+        <form className="login" onSubmit={props.onLogin}>
             <div className="form-group">
                 <label htmlFor="login" className="i-input-label">Login</label>
                 <input
@@ -27,15 +27,15 @@ const Login = (props) => {
                 </input>
             </div>
             <div className="text-center">
-                <button className="btn btn-primary" onClick={props.onClickLogin}>Log In</button>
+                <button className="btn btn-primary" type="submit">Log In</button>
             </div>
-        </div>
+        </form>
     );
 };
 Login.defaultProps = {
     onChangeLogin: () => {},
     onChangePswd: () => {},
-    onClickLogin: () => {}
+    onLogin: () => {}
 }
 
 export default Login;
