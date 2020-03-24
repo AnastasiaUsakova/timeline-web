@@ -13,3 +13,7 @@ export const login = (user) => {
 export const getNextCard = () => {
     return axios.get("/api/v1/game/deck");
 }
+
+export const start = (username) => {
+    return axios.get(`/api/v1/game/start/${username}`);
+}

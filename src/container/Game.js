@@ -85,6 +85,13 @@ class Game extends Component{
 
     onLogin() {
         console.log("click");
+        API.start(this.state.user.login)
+            .then((response) => {
+                this.setState({player: response.data});
+            })
+            .catch(error => {
+                console.log("Error");
+            })
         const isAuthorized = this.state.user.login && this.state.user.password;
         this.setState({isAuthorized: isAuthorized});
     }
