@@ -20,7 +20,9 @@ class Game extends Component{
     };
 
     componentDidMount() {// useSmth react hooks
-        this.loadData();
+        if (this.state.isAuthorized) {
+            this.loadData();
+        }
     }
 
     loadData = () => {
@@ -31,9 +33,33 @@ class Game extends Component{
             card.description = "Карта " + i;
             cards.push(card);
         }
+        API.getHand(this.state.player.id)
+            .then((response) => {
+                console.log(response);
+            })
+            .catch(error => {
+                //nop
+            })
+
 
         this.setState({hand: cards, table: [cards[0]]});
     };
+
+    poopCard = () => {
+        var card = null;
+        API.getNextCard(this.state.player.id)
+            .then((response) => {
+                card = {
+                    id: response.data.id,
+                    year: response.data.card.inventionDate,
+                    description: response.data.card.defInvention
+                };
+            })
+            .catch(error => {
+                //nop
+            })
+        return card;
+    }
 
     selectInHand(index) {
         console.log("Index " + index);
@@ -58,9 +84,13 @@ class Game extends Component{
         if (cards.length >= 5) {
             console.log("max = 5");
         } else {
-            API.getNextCard()
+            API.getNextCard(this.state.player.id)
                 .then((response) => {
-                    cards.push({id: response.data.id, year: response.data.inventionDate, description: response.data.defInvention});
+                    cards.push({
+                        id: response.data.id,
+                        year: response.data.card.inventionDate,
+                        description: response.data.card.defInvention
+                    });
                     this.setState({hand: cards});
                 })
                 .catch(error => {
@@ -88,6 +118,7 @@ class Game extends Component{
         API.start(this.state.user.login)
             .then((response) => {
                 this.setState({player: response.data});
+                this.loadData();
             })
             .catch(error => {
                 console.log("Error");
