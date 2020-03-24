@@ -4,6 +4,8 @@ import Deck from "../component/Deck";
 import Hand from "../component/Hand";
 import Login from "../component/Login";
 
+import * as API from './../services/API';
+
 class Game extends Component{
 
     state = {
@@ -56,8 +58,14 @@ class Game extends Component{
         if (cards.length >= 5) {
             console.log("max = 5");
         } else {
-            cards.push({id: 23, year: 2021, description: "Clone"});
-            this.setState({hand: cards});
+            API.getNextCard()
+                .then((response) => {
+                    cards.push({id: response.data.id, year: response.data.inventionDate, description: response.data.defInvention});
+                    this.setState({hand: cards});
+                })
+                .catch(error => {
+                    //nop
+                })
         }
     }
 
